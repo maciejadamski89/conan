@@ -57,6 +57,32 @@ let initialTalentPoints = {
 } 
 
 
+function separateCamelCase(camelString:string) {
+  return [...camelString].map(ch => (ch === ch.toUpperCase()) ? " " + ch.toLocaleLowerCase() : ch).join("");
+}
+
+function capitalFirstLetter(string:string){
+  return string.replace(string[0], string[0].toUpperCase());
+}
+
+const plusIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+    </svg>
+  )
+}
+
+const minusIcon = () => {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
+    </svg>
+  )
+
+}
+
+
 export default function Home() {
   const [talentPoints, setTalentPoints] = useState(initialTalentPoints);
 
@@ -88,31 +114,51 @@ export default function Home() {
         />
 
         <div className="flex items-center justify-center h-screen">
-          <h1 className="text-5xl text-white">Witaj w aplikacji do tworzenia postaci fo gry RPG CONAN !</h1>
+          <h1 className="text-5xl text-white">Witaj w aplikacji do tworzenia postaci do gry RPG CONAN !</h1>
         </div>
 
         <div className='flex flex-col items-center justify-center'>
           <p className='mt-5 text-xl font-bold text-white'>Liczba pkt do wydania: {totalPointsToUse}</p>
           <div className="mt-10"></div>
 
-        {Object.keys(initialTalentPoints).map((talent) => { 
-           return( 
-            <div key={talent} className='flex items-center justify-center text-left'>
-              <p className='mr-5 text-xl text-white'>{talent}</p>
-              <button className='mx-2 text-4xl text-white' onClick={() => {
-                //@ts-ignore 
-                (talentPoints[talent] > 0 && totalPointsToUse < 40) ? decrement(talent) : null}}>-</button>
-              <p className='text-xl text-white'>{
-              //@ts-ignore 
-                talentPoints[talent]}
-              </p>
-              <button className='mx-2 text-4xl text-white' onClick={() => {
-              //@ts-ignore 
-                (talentPoints[talent] < 5 && totalPointsToUse > 0 ) ? increment(talent) : null}}>+</button>
-            </div>
-           )
-          }) 
-        }
+          <table className="text-xl text-white">
+            <tbody>
+              {Object.keys(initialTalentPoints).map((talent) => { 
+                return( 
+                  <tr key={talent} className="border border-neutral-700 hover:bg-neutral-800">
+                      <td className="p-5">
+                        <p className='text-xl text-white'>{capitalFirstLetter(separateCamelCase(talent))}</p>
+                      </td>
+                      <td className="p-5">
+                        <div className="flex items-center justify-center">
+                        <button className='mr-2 text-4xl text-white' 
+                        onClick={() => {
+                          //@ts-ignore 
+                          (talentPoints[talent] > 0 && totalPointsToUse < 40) ? decrement(talent) : null}}
+                          >
+                          {minusIcon()}
+                        </button>
+
+                        <p className='text-xl text-white'>{
+                        //@ts-ignore 
+                          talentPoints[talent]}
+                        </p>
+
+                        <button className='ml-2 text-4xl text-white' 
+                        onClick={() => {
+                        //@ts-ignore 
+                          (talentPoints[talent] < 5 && totalPointsToUse > 0 ) ? increment(talent) : null}}
+                        >
+                          {plusIcon()}
+                        </button>
+                      </div>
+                      </td>
+                  </tr>
+                )
+                }) 
+              }
+            </tbody>
+          </table>
         </div>
     </main>
 )}
