@@ -214,7 +214,10 @@ export default function Home() {
                   <tr key={talent} className="border border-neutral-700 hover:bg-neutral-800">
                       <td className="p-5">
                         {/* <p className='text-xl text-white'>{capitalFirstLetter(separateCamelCase(talent))}</p> */}
-                        {tooltip(capitalFirstLetter(separateCamelCase(talent)), talentDescription[talent])}
+                        {
+                          //@ts-ignore
+                          tooltip(capitalFirstLetter(separateCamelCase(talent)), talentDescription[talent])
+                        }
                       </td>
                       <td className="p-5">
                         <div className="flex items-center justify-center">
