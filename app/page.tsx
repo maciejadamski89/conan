@@ -2,10 +2,35 @@
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import { useState } from 'react'
+import Script from 'next/script'
+import {
+  akrobatyka,
+  alchemia,
+  postępowanieZeZwierzętami,
+  zwierzęcyRefleks,
+  zmysłyZwierząt,
+  językiTajemne,
+  szał,
+  rzemieślnik,
+  kowal,
+  bójka,
+  stolarstwo,
+  wspinaczka,
+  szkoda,
+  poczucieZagrożenia,
+  zmysłKierunkowy,
+  sława,
+  fałszerstwo,
+  złotnik,
+  zielarstwo,
+  język
+}
+   from '../talents'
 
 const inter = Inter({ subsets: ['latin'] })
 
 let totalPointsToUse = 40;
+
 let initialTalentPoints = {
   "akrobatyka": 0,
   "alchemia": 0,
@@ -56,6 +81,56 @@ let initialTalentPoints = {
   "zapasy": 0,
 } 
 
+const talentDescription = {
+  "akrobatyka": akrobatyka(),
+  "alchemia": alchemia(),
+  "postępowanieZeZwierzętami": postępowanieZeZwierzętami(),
+  "zwierzęcyRefleks": zwierzęcyRefleks(),
+  "zmysłyZwierząt": zmysłyZwierząt(),
+  "językiTajemne": językiTajemne(),
+  "szał": szał(), 
+  "rzemieślnik": rzemieślnik(),
+  "kowal": kowal(),
+  "bójka": bójka(),
+  "stolarstwo": stolarstwo(),
+  "wspinaczka": wspinaczka(),
+  "szkoda": szkoda(),
+  "poczucieZagrożenia": poczucieZagrożenia(),
+  "zmysłKierunkowy": zmysłKierunkowy(),
+  "sława": sława(),
+  "fałszerstwo": fałszerstwo(),
+  "złotnik": złotnik(),
+  "zielarstwo": zielarstwo(),
+  "język": język(),
+  "otwieranieZamka": 0,
+  "historia": 0,
+  "magicznyZmysł": 0,
+  "lekarstwo": 0,
+  "ruch": 0,
+  "nawigacja": 0,
+  "spostrzegawczość": 0,
+  "osobistyMagnetyzm": 0,
+  "prawaFizyczne": 0,
+  "okradanie": 0,
+  "minstrel": 0,
+  "wytrzymałośćNaTruciznę": 0,
+  "czytanie_pisanie": 0,
+  "żeglarstwo": 0,
+  "inżynieria": 0,
+  "kuglarstwo": 0,
+  "wytrwałość": 0,
+  "wytrzymałość": 0,
+  "przetrwanie": 0,
+  "pływanie": 0,
+  "tropienie": 0,
+  "broń": 0,
+  "wola": 0,
+  "zastawianieSideł": 0,
+  "walkaDwomaBroniami": 0,
+  "wyczuciePogody": 0,
+  "zapasy": 0,
+}
+
 
 function separateCamelCase(camelString:string) {
   return [...camelString].map(ch => (ch === ch.toUpperCase()) ? " " + ch.toLocaleLowerCase() : ch).join("");
@@ -79,7 +154,17 @@ const minusIcon = () => {
       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 12h-15" />
     </svg>
   )
+}
 
+function tooltip(talent:string, talentDescription:string) {
+  return(
+    <div className="max-w-lg mx-auto">
+        <button data-tooltip-target={talent} data-tooltip-placement="right" type="button" className="">{talent}</button>
+        <div id={talent} role="tooltip" className="absolute z-10 invisible inline-block max-w-xs px-3 py-2 text-sm font-medium text-white rounded-lg shadow-sm opacity-0 bg-neutral-800 tooltip" data-popper-reference-hidden="" data-popper-escaped="" data-popper-placement="right" style={{position: "absolute", inset: "0px auto auto 0px", margin: "0px", transform: "translate3d(1162px, 1620px, 0px);"}}>
+          {talentDescription}
+        </div>
+    </div>
+  )
 }
 
 
@@ -106,6 +191,7 @@ export default function Home() {
 
   return (
     <main className="">
+      <link rel="stylesheet" href="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.min.css" />
       <Image 
         className='-z-10 opacity-30'
         src="/conan.jpg"
@@ -127,7 +213,8 @@ export default function Home() {
                 return( 
                   <tr key={talent} className="border border-neutral-700 hover:bg-neutral-800">
                       <td className="p-5">
-                        <p className='text-xl text-white'>{capitalFirstLetter(separateCamelCase(talent))}</p>
+                        {/* <p className='text-xl text-white'>{capitalFirstLetter(separateCamelCase(talent))}</p> */}
+                        {tooltip(capitalFirstLetter(separateCamelCase(talent)), talentDescription[talent])}
                       </td>
                       <td className="p-5">
                         <div className="flex items-center justify-center">
@@ -159,6 +246,8 @@ export default function Home() {
               }
             </tbody>
           </table>
+
+          <Script src="https://unpkg.com/@themesberg/flowbite@1.1.0/dist/flowbite.bundle.js"></Script>
         </div>
     </main>
 )}
