@@ -6,7 +6,7 @@ import { useState } from 'react'
 const inter = Inter({ subsets: ['latin'] })
 
 let totalPointsToUse = 40;
-let initialTalentPoints ={
+let initialTalentPoints = {
   "akrobatyka": 0,
   "alchemia": 0,
   "postępowanieZeZwierzętami": 0,
@@ -63,6 +63,7 @@ export default function Home() {
   const increment = (id:string) => {
     setTalentPoints({
       ...talentPoints,
+      //@ts-ignore
      [id]: talentPoints[id] + 1,
     });
     totalPointsToUse -= 1;
@@ -71,6 +72,7 @@ export default function Home() {
   const decrement = (id:string) => {
     setTalentPoints({
       ...talentPoints,
+      //@ts-ignore
      [id]: talentPoints[id] - 1,
     });
     totalPointsToUse += 1;
@@ -97,9 +99,16 @@ export default function Home() {
            return( 
             <div key={talent} className='flex items-center justify-center text-left'>
               <p className='mr-5 text-xl text-white'>{talent}</p>
-              <button className='mx-2 text-4xl text-white' onClick={() => {(talentPoints[talent] > 0 && totalPointsToUse < 40) ? decrement(talent) : null}}>-</button>
-              <p className='text-xl text-white'>{talentPoints[talent]}</p>
-              <button className='mx-2 text-4xl text-white' onClick={() => {(talentPoints[talent] < 5 && totalPointsToUse > 0 ) ? increment(talent) : null}}>+</button>
+              <button className='mx-2 text-4xl text-white' onClick={() => {
+                //@ts-ignore 
+                (talentPoints[talent] > 0 && totalPointsToUse < 40) ? decrement(talent) : null}}>-</button>
+              <p className='text-xl text-white'>{
+              //@ts-ignore 
+                talentPoints[talent]}
+              </p>
+              <button className='mx-2 text-4xl text-white' onClick={() => {
+              //@ts-ignore 
+                (talentPoints[talent] < 5 && totalPointsToUse > 0 ) ? increment(talent) : null}}>+</button>
             </div>
            )
           }) 
