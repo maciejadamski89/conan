@@ -4,7 +4,6 @@ import TalentPoints from "./TalentPoints";
 //Main
 export default async function Talents() {
 	const talents = await getTalents();
-	console.log(talents);
 	return (
 		<table className="text-xl text-white">
 			<thead>
