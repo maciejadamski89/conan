@@ -8,7 +8,7 @@ export default function RootLayout({children}: {children: React.ReactNode}) {
         head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
       */}
 			<head />
-			<body className="bg-neutral-900">{children}</body>
+			<body className="overflow-scroll bg-neutral-900">{children}</body>
 		</html>
 	);
 }

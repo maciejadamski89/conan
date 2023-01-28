@@ -8,7 +8,7 @@ const inter = Inter({subsets: ["latin"]});
 //Main
 export default function Home() {
 	return (
-		<main className="px-16 pb-32">
+		<main className="w-full px-16 pb-32 mx-auto">
 			{/* <Image
 				className="relative -z-10 opacity-30"
 				src="/conan.jpg"

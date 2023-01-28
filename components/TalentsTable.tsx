@@ -29,13 +29,17 @@ export default function TalentsTable({talents}: {talents: TalentsSupabase[]}) {
 					}}
 				/>
 			</div>
-			<table className="w-full text-xl text-white">
+			<table className="min-w-full overflow-hidden text-left text-white table-auto text-md">
 				<thead>
 					<tr className="border border-neutral-700 bg-neutral-600 ">
-						<td className="p-5">Talent</td>
-						<td className="p-5">Pula talentu</td>
-						<td className="p-5">Opis talentu</td>
-						<td className="p-5">Punkty</td>
+						<th className="px-6 py-3 whitespace-nowrap">Talent</th>
+						<th className="px-6 py-3 whitespace-nowrap">
+							Pula talentu
+						</th>
+						<th className="px-6 py-3 whitespace-nowrap">
+							Opis talentu
+						</th>
+						<th className="px-6 py-3 whitespace-nowrap">Punkty</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -45,12 +49,16 @@ export default function TalentsTable({talents}: {talents: TalentsSupabase[]}) {
 								key={talent.id}
 								className="border border-neutral-700 hover:bg-neutral-800"
 							>
-								<td className="min-w-[10rem] p-5">
+								<td className="px-6 py-3 min-w-[15%]">
 									{talent.name}
 								</td>
-								<td className="p-5">{talent.pot}</td>
-								<td className="p-5">{talent.description}</td>
-								<td className="p-5">
+								<td className="px-6 py-3 min-w-[12%] whitespace-nowrap">
+									{talent.pot}
+								</td>
+								<td className="px-6 py-3">
+									{talent.description}
+								</td>
+								<td className="px-6 py-3 whitespace-nowrap">
 									<TalentPoints />
 								</td>
 							</tr>
