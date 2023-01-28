@@ -3,8 +3,8 @@ import React from "react";
 import {useState} from "react";
 
 //Main
-export default function TalentPoints() {
-	const maxTalentPoints = 40;
+export default function TalentPoints(): JSX.Element {
+	const maxTalentPoints: number = 40;
 	const [totalTalentPoints, setTotalTalentPoints] = useState(maxTalentPoints);
 	const [talentPoints, setTalentPoints] = useState(0);
 
