@@ -10,9 +10,10 @@ export default function SearchInput({
 			<input
 				className="w-full p-5 my-5 text-xl text-white border rounded bg-neutral-900 border-neutral-800 focus:outline-none focus-visible:outline-none"
 				type="text"
-				placeholder="Search talent"
+				placeholder="Szukaj talentu"
 				onChange={(event) => {
-					setInputSearch(event.target.value);
+					const valueFromInputSearch = event.target.value;
+					setInputSearch(valueFromInputSearch);
 				}}
 			/>
 		</div>
