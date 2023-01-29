@@ -1,10 +1,10 @@
 "use client";
-import React from "react";
-import {useState} from "react";
 
-export default function SearchInput() {
-	const [inputSearch, setInputSearch] = useState("");
-
+export default function SearchInput({
+	setInputSearch,
+}: {
+	setInputSearch: React.Dispatch<React.SetStateAction<string>>;
+}) {
 	return (
 		<div>
 			<input

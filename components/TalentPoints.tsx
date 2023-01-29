@@ -3,19 +3,23 @@ import React from "react";
 import {useState} from "react";
 
 //Main
-export default function TalentPoints(): JSX.Element {
-	const maxTalentPoints: number = 40;
-	const [totalTalentPoints, setTotalTalentPoints] = useState(maxTalentPoints);
+export default function TalentPoints({
+	totalTalentPointsToSpend,
+	setTotalTalentPointsToSpend,
+}: {
+	totalTalentPointsToSpend: number;
+	setTotalTalentPointsToSpend: React.Dispatch<React.SetStateAction<number>>;
+}): JSX.Element {
 	const [talentPoints, setTalentPoints] = useState(0);
 
 	function increment() {
 		setTalentPoints(talentPoints + 1);
-		setTotalTalentPoints(totalTalentPoints - 1);
+		setTotalTalentPointsToSpend(totalTalentPointsToSpend - 1);
 	}
 
 	function decrement() {
 		setTalentPoints(talentPoints - 1);
-		setTotalTalentPoints(totalTalentPoints + 1);
+		setTotalTalentPointsToSpend(totalTalentPointsToSpend + 1);
 	}
 
 	return (
@@ -23,7 +27,7 @@ export default function TalentPoints(): JSX.Element {
 			<button
 				className="mr-2 text-4xl text-white"
 				onClick={() => {
-					talentPoints > 0 && totalTalentPoints < 40
+					talentPoints > 0 && totalTalentPointsToSpend < 40
 						? decrement()
 						: null;
 				}}
@@ -36,7 +40,7 @@ export default function TalentPoints(): JSX.Element {
 			<button
 				className="ml-2 text-4xl text-white"
 				onClick={() => {
-					talentPoints < 5 && totalTalentPoints > 0
+					talentPoints < 5 && totalTalentPointsToSpend > 0
 						? increment()
 						: null;
 				}}

@@ -1,16 +1,10 @@
 import {createClient} from "@supabase/supabase-js";
-import TalentsTable from "./TalentsTable";
-
-type TalentsSupabase = {
-	id: number;
-	name: string;
-	pot: string;
-	description: number;
-};
+import {TalentsSupabase} from "@/types";
+import TalentsSection from "./TalentsSection";
 
 export default async function Talents() {
 	const talents: TalentsSupabase[] = await getTalents();
-	return <TalentsTable talents={talents} />;
+	return <TalentsSection talents={talents} />;
 }
 
 async function getTalents() {

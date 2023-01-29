@@ -1,34 +1,18 @@
 "use client";
 import TalentPoints from "./TalentPoints";
-import {useState} from "react";
+import {TalentsSupabase} from "@/types";
 
-type TalentsSupabase = {
-	id: number;
-	name: string;
-	pot: string;
-	description: number;
-};
-
-export default function TalentsTable({talents}: {talents: TalentsSupabase[]}) {
-	const [inputSearch, setInputSearch] = useState("");
-
-	const filtredTalents = talents.filter((talent) => {
-		const talentName = talent.name.toLowerCase();
-		return talentName.includes(inputSearch.toLowerCase());
-	});
-
+export default function TalentsTable({
+	filtredTalents,
+	totalTalentPointsToSpend,
+	setTotalTalentPointsToSpend,
+}: {
+	filtredTalents: TalentsSupabase[];
+	totalTalentPointsToSpend: number;
+	setTotalTalentPointsToSpend: React.Dispatch<React.SetStateAction<number>>;
+}) {
 	return (
 		<>
-			<div>
-				<input
-					className="w-full p-5 my-5 text-xl text-white border rounded bg-neutral-900 border-neutral-800 focus:outline-none focus-visible:outline-none"
-					type="text"
-					placeholder="Szukaj talentu"
-					onChange={(event) => {
-						setInputSearch(event.target.value);
-					}}
-				/>
-			</div>
 			<table className="min-w-full overflow-hidden text-left text-white table-auto text-md">
 				<thead>
 					<tr className="border border-neutral-700 bg-neutral-600 ">
@@ -59,7 +43,14 @@ export default function TalentsTable({talents}: {talents: TalentsSupabase[]}) {
 									{talent.description}
 								</td>
 								<td className="px-6 py-3 whitespace-nowrap">
-									<TalentPoints />
+									<TalentPoints
+										setTotalTalentPointsToSpend={
+											setTotalTalentPointsToSpend
+										}
+										totalTalentPointsToSpend={
+											totalTalentPointsToSpend
+										}
+									/>
 								</td>
 							</tr>
 						);
