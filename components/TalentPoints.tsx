@@ -35,7 +35,13 @@ export default function TalentPoints({
 				{minusIcon()}
 			</button>
 
-			<p className="text-xl text-white">{talentPoints}</p>
+			<p
+				className={`text-xl ${
+					talentPoints > 0 ? "text-green-600" : "text-white"
+				}`}
+			>
+				{talentPoints}
+			</p>
 
 			<button
 				className="ml-2 text-4xl text-white"
